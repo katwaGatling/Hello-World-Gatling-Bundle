@@ -9,7 +9,6 @@ import io.gatling.javaapi.http.*;
 public class SimulationName extends Simulation {
 
     public static final int vu = Integer.getInteger("vu", 1);
-    public static final int duration = Integer.getInteger("duration", 15);
 
     HttpProtocolBuilder httpProtocol =
         http.baseUrl("https://computer-database.gatling.io")
@@ -24,7 +23,7 @@ public class SimulationName extends Simulation {
 
     {
         setUp(
-            users.injectOpen(rampUsers(vu).during(duration))
+            users.injectOpen(atOnceUsers(vu))
         ).protocols(httpProtocol);
     }
 }
